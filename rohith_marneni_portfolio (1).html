@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rohith Marneni | Senior DevOps & Cloud Engineer</title>
+<style>
+  :root {
+    --primary: #1E40AF;
+    --primary-light: #3B82F6;
+    --primary-pale: #EFF6FF;
+    --accent: #0EA5E9;
+    --success: #059669;
+    --text: #0F172A;
+    --text-muted: #64748B;
+    --text-light: #94A3B8;
+    --bg: #F8FAFC;
+    --card: #FFFFFF;
+    --border: #E2E8F0;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; font-size: 15px; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo { font-size: 17px; font-weight: 700; color: var(--primary); letter-spacing: -0.3px; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 14px; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--primary); }
+
+  .hero {
+    background: linear-gradient(135deg, #EFF6FF 0%, #F0F9FF 50%, #F8FAFC 100%);
+    padding: 80px 5% 70px;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-inner { max-width: 900px; margin: 0 auto; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--primary-pale); border: 1px solid #BFDBFE;
+    color: var(--primary); font-size: 13px; font-weight: 600;
+    padding: 5px 14px; border-radius: 999px; margin-bottom: 22px;
+  }
+  .hero-badge .dot { width: 7px; height: 7px; background: var(--success); border-radius: 50%; display: inline-block; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+  .hero h1 { font-size: 48px; font-weight: 800; letter-spacing: -1px; color: var(--text); line-height: 1.1; margin-bottom: 10px; }
+  .hero h1 span { color: var(--primary); }
+  .hero-title { font-size: 20px; color: var(--primary-light); font-weight: 600; margin-bottom: 18px; }
+  .hero-tagline { font-size: 16px; color: var(--text-muted); max-width: 620px; line-height: 1.7; margin-bottom: 32px; }
+
+  .pipeline { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin-bottom: 36px; }
+  .pipe-step {
+    display: flex; align-items: center; gap: 6px;
+    background: white; border: 1px solid var(--border);
+    padding: 7px 14px; border-radius: 8px;
+    font-size: 12px; font-weight: 600; color: var(--text-muted);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .pipe-arrow { color: #CBD5E1; font-size: 16px; }
+  .pipe-step.active { background: var(--primary); border-color: var(--primary); color: white; }
+
+  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--primary); color: white; text-decoration: none;
+    padding: 11px 22px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 600;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .btn-primary:hover { background: #1D3FA5; transform: translateY(-1px); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: white; color: var(--text); text-decoration: none; border: 1px solid var(--border);
+    padding: 11px 22px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 500;
+    transition: border-color 0.2s, transform 0.1s;
+  }
+  .btn-outline:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-1px); }
+
+  .stats-bar { background: var(--primary); padding: 22px 5%; }
+  .stats-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); }
+  .stat-item { text-align: center; border-right: 1px solid rgba(255,255,255,0.15); padding: 0 20px; }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-size: 28px; font-weight: 800; color: white; }
+  .stat-label { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 2px; font-weight: 500; }
+
+  section { padding: 64px 5%; }
+  .section-inner { max-width: 900px; margin: 0 auto; }
+  .section-header { margin-bottom: 36px; }
+  .section-tag { font-size: 12px; font-weight: 700; color: var(--primary-light); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 8px; }
+  .section-title { font-size: 28px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+  .section-line { width: 40px; height: 3px; background: var(--primary); border-radius: 2px; margin-top: 10px; }
+
+  #about { background: white; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  .about-text p { color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; font-size: 15px; }
+  .about-highlights { display: flex; flex-direction: column; gap: 14px; }
+  .highlight-card {
+    background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm);
+    padding: 16px 18px; display: flex; align-items: flex-start; gap: 14px;
+  }
+  .highlight-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+  .highlight-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+  .highlight-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+  #skills { background: var(--bg); }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .skill-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; }
+  .skill-cat { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--primary); margin-bottom: 12px; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tag { background: var(--bg); border: 1px solid var(--border); color: var(--text-muted); font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 6px; }
+  .tag.hot { background: var(--primary-pale); border-color: #BFDBFE; color: var(--primary); }
+
+  #experience { background: white; }
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before { content: ''; position: absolute; left: 8px; top: 8px; bottom: 8px; width: 2px; background: var(--border); }
+  .exp-item { position: relative; margin-bottom: 40px; }
+  .exp-item::before {
+    content: ''; position: absolute; left: -24px; top: 6px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: white; border: 2px solid var(--primary);
+  }
+  .exp-item.current::before { background: var(--primary); }
+  .exp-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 24px; transition: all 0.2s; }
+  .exp-card:hover { border-color: #BFDBFE; box-shadow: 0 4px 12px rgba(30,64,175,0.07); }
+  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; flex-wrap: wrap; gap: 8px; }
+  .exp-company { font-size: 16px; font-weight: 700; color: var(--text); }
+  .exp-badge { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: #DCFCE7; color: #15803D; }
+  .exp-badge.past { background: var(--bg); color: var(--text-muted); border: 1px solid var(--border); }
+  .exp-role { font-size: 14px; font-weight: 600; color: var(--primary); margin-bottom: 4px; }
+  .exp-meta { font-size: 13px; color: var(--text-light); margin-bottom: 14px; }
+  .exp-points { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .exp-points li { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; padding-left: 16px; position: relative; }
+  .exp-points li::before { content: '▸'; position: absolute; left: 0; color: var(--primary-light); font-size: 11px; top: 1px; }
+  .exp-env { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .env-tag { background: white; border: 1px solid var(--border); color: var(--text-muted); font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 5px; }
+
+  .compliance-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+  .comp-badge { display: flex; align-items: center; gap: 8px; background: white; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 16px; }
+  .comp-badge .cb-icon { font-size: 20px; }
+  .comp-badge .cb-label { font-size: 12px; font-weight: 700; color: var(--text); }
+  .comp-badge .cb-desc { font-size: 11px; color: var(--text-muted); }
+
+  #education { background: var(--bg); }
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .edu-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 26px; }
+  .edu-degree { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+  .edu-school { font-size: 14px; font-weight: 600; color: var(--primary); margin-bottom: 4px; }
+  .edu-meta { font-size: 13px; color: var(--text-muted); }
+
+  #contact { background: white; border-top: 1px solid var(--border); }
+  .contact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .contact-card {
+    background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 20px; text-align: center; text-decoration: none; transition: all 0.2s;
+  }
+  .contact-card:hover { border-color: var(--primary); transform: translateY(-2px); box-shadow: 0 4px 14px rgba(30,64,175,0.1); }
+  .contact-card .cc-icon { font-size: 26px; margin-bottom: 10px; }
+  .contact-card .cc-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-muted); margin-bottom: 4px; }
+  .contact-card .cc-val { font-size: 12px; color: var(--primary); font-weight: 500; word-break: break-all; }
+
+  footer { background: #0F172A; color: rgba(255,255,255,0.45); text-align: center; padding: 22px; font-size: 13px; }
+
+  @media (max-width: 700px) {
+    .hero h1 { font-size: 32px; }
+    .stats-inner, .skills-grid, .edu-grid, .contact-grid, .about-grid { grid-template-columns: 1fr; }
+    .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); padding: 10px 0; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Rohith Marneni</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span class="dot"></span> Open to New Opportunities
+    </div>
+    <h1>Rohith <span>Marneni</span></h1>
+    <div class="hero-title">Senior DevOps &amp; Cloud Engineer</div>
+    <p class="hero-tagline">7+ years building secure, scalable cloud infrastructure for Fortune 500 companies across healthcare, financial services &amp; automotive. Multi-cloud | Kubernetes | DevSecOps | MLOps</p>
+
+    <div class="pipeline">
+      <div class="pipe-step">💻 Code</div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step active">⚙️ Build</div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">🧪 Test</div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step active">🚀 Deploy</div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">📊 Monitor</div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">🔄 Improve</div>
+    </div>
+
+    <div class="hero-cta">
+      <a href="mailto:rohithmarneni21@gmail.com" class="btn-primary">✉️ &nbsp;Email Me</a>
+      <a href="https://www.linkedin.com/in/rohith-marneni/" target="_blank" class="btn-outline">🔗 &nbsp;LinkedIn</a>
+      <a href="https://github.com/rohithmarneni21" target="_blank" class="btn-outline">🐙 &nbsp;GitHub</a>
+      <a href="tel:+15619089444" class="btn-outline">📞 &nbsp;+1 561 908 9444</a>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-num">7+</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Cloud Platforms</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">5+</div>
+      <div class="stat-label">Enterprise Clients</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Compliance Standards</div>
+    </div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Who I Am</div>
+      <div class="section-title">About Me</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a Senior DevOps and Cloud Engineer with 7+ years of hands-on experience delivering enterprise-grade infrastructure across <strong>AWS, Azure, and GCP</strong>. I've worked for Fortune 500 organisations in healthcare, financial services, and automotive — industries where reliability, security, and compliance are non-negotiable.</p>
+        <p>My expertise spans the full DevOps lifecycle — from writing infrastructure as code with Terraform and managing Kubernetes clusters at scale, to building CI/CD pipelines, implementing DevSecOps practices, and setting up full observability stacks. I take ownership end to end, not just one piece of the puzzle.</p>
+        <p>Currently at <strong>Volkswagen Group of America</strong>, I'm actively integrating <strong>AI/ML and MLOps</strong> into cloud operations — predictive autoscaling, AIOps workflows, and MLOps pipelines on SageMaker and Azure ML.</p>
+      </div>
+      <div class="about-highlights">
+        <div class="highlight-card">
+          <div class="highlight-icon">☁️</div>
+          <div>
+            <div class="highlight-title">Multi-Cloud Architecture</div>
+            <div class="highlight-desc">AWS, Azure &amp; GCP — designing fault-tolerant, highly available, cost-optimised infrastructure at global scale.</div>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🔒</div>
+          <div>
+            <div class="highlight-title">DevSecOps &amp; Compliance</div>
+            <div class="highlight-desc">HIPAA, PCI-DSS, SOC 2 environments. Zero-trust security, RBAC, secrets management, and vulnerability scanning built in.</div>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🤖</div>
+          <div>
+            <div class="highlight-title">AI/ML &amp; MLOps Integration</div>
+            <div class="highlight-desc">Building AIOps workflows, anomaly detection, and MLOps pipelines on AWS SageMaker and Azure ML.</div>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">📈</div>
+          <div>
+            <div class="highlight-title">Observability &amp; SRE Mindset</div>
+            <div class="highlight-desc">Prometheus, Grafana, ELK, CloudWatch &amp; Splunk — keeping MTTR low and uptime high across distributed microservices.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Technical Expertise</div>
+      <div class="section-title">Skills &amp; Technologies</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-cat">☁️ Cloud Platforms</div>
+        <div class="skill-tags">
+          <span class="tag hot">AWS</span><span class="tag hot">Azure</span><span class="tag hot">GCP</span>
+          <span class="tag">EC2 / S3 / VPC</span><span class="tag">ECS / EKS / Fargate</span>
+          <span class="tag">AKS / Azure VNet</span><span class="tag">Route 53</span>
+          <span class="tag">CloudFront</span><span class="tag">AWS SageMaker</span><span class="tag">Azure ML</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">🔁 CI/CD &amp; Automation</div>
+        <div class="skill-tags">
+          <span class="tag hot">Jenkins</span><span class="tag hot">GitHub Actions</span><span class="tag hot">Azure DevOps</span>
+          <span class="tag">GitLab CI</span><span class="tag">Argo CD</span><span class="tag">AWS CodePipeline</span>
+          <span class="tag">GitOps</span><span class="tag">Blue-Green Deploy</span><span class="tag">Canary Releases</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">🏗️ Infrastructure as Code</div>
+        <div class="skill-tags">
+          <span class="tag hot">Terraform</span><span class="tag hot">Ansible</span>
+          <span class="tag">CloudFormation</span><span class="tag">Azure Bicep</span>
+          <span class="tag">ARM Templates</span><span class="tag">Helm Charts</span><span class="tag">YAML</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">📦 Containers &amp; Orchestration</div>
+        <div class="skill-tags">
+          <span class="tag hot">Docker</span><span class="tag hot">Kubernetes</span>
+          <span class="tag">EKS</span><span class="tag">AKS</span><span class="tag">ECS Fargate</span>
+          <span class="tag">Helm</span><span class="tag">ECR / ACR</span><span class="tag">HPA / Autoscaling</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">📊 Observability &amp; Monitoring</div>
+        <div class="skill-tags">
+          <span class="tag hot">Prometheus</span><span class="tag hot">Grafana</span>
+          <span class="tag">ELK Stack</span><span class="tag">Splunk</span><span class="tag">PagerDuty</span>
+          <span class="tag">AWS CloudWatch</span><span class="tag">Azure Monitor</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">🔐 Security &amp; Compliance</div>
+        <div class="skill-tags">
+          <span class="tag hot">HashiCorp Vault</span><span class="tag hot">AWS IAM</span>
+          <span class="tag">RBAC</span><span class="tag">AWS KMS</span><span class="tag">Azure Key Vault</span>
+          <span class="tag">SAST / DAST</span><span class="tag">HIPAA</span><span class="tag">PCI-DSS</span><span class="tag">SOC 2</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">💻 Scripting &amp; Development</div>
+        <div class="skill-tags">
+          <span class="tag hot">Python</span><span class="tag hot">Bash / Shell</span>
+          <span class="tag">PowerShell</span><span class="tag">Linux / Unix</span>
+          <span class="tag">REST APIs</span><span class="tag">Apache Kafka</span><span class="tag">Microservices</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">🤖 AI/ML &amp; Emerging Tech</div>
+        <div class="skill-tags">
+          <span class="tag hot">MLOps</span><span class="tag hot">AIOps</span>
+          <span class="tag">GitHub Copilot</span><span class="tag">LLMs</span>
+          <span class="tag">Anomaly Detection</span><span class="tag">Predictive Autoscaling</span><span class="tag">SageMaker</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Career Journey</div>
+      <div class="section-title">Work Experience</div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="timeline">
+
+      <div class="exp-item current">
+        <div class="exp-card">
+          <div class="exp-header">
+            <div class="exp-company">🚗 Volkswagen Group of America — Herndon, VA</div>
+            <div class="exp-badge">Current</div>
+          </div>
+          <div class="exp-role">Senior DevOps Engineer</div>
+          <div class="exp-meta">June 2025 – Present &nbsp;|&nbsp; Automotive &amp; Connected Vehicle Platform</div>
+          <ul class="exp-points">
+            <li>Architecting hybrid cloud infrastructure across AWS &amp; Azure for connected vehicle and telematics platforms serving millions of vehicles globally.</li>
+            <li>Leading Kubernetes (EKS) operations and GitOps with Argo CD — zero-downtime blue-green and canary deployments for vehicle connectivity microservices.</li>
+            <li>Integrating AI/ML into DevOps workflows — predictive autoscaling, AI-driven anomaly detection, and intelligent alerting (AIOps).</li>
+            <li>Building MLOps pipelines on AWS SageMaker and Azure ML for model training, versioning, and continuous retraining for Volkswagen's connected vehicle intelligence platform.</li>
+            <li>Centralised observability with Prometheus, Grafana &amp; ELK Stack — real-time monitoring with AI-enhanced performance analysis across distributed microservices.</li>
+          </ul>
+          <div class="exp-env">
+            <span class="env-tag">AWS</span><span class="env-tag">Azure</span><span class="env-tag">EKS</span><span class="env-tag">Terraform</span><span class="env-tag">Argo CD</span><span class="env-tag">Jenkins</span><span class="env-tag">GitHub Actions</span><span class="env-tag">HashiCorp Vault</span><span class="env-tag">SageMaker</span><span class="env-tag">Azure ML</span><span class="env-tag">AIOps</span><span class="env-tag">MLOps</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-card">
+          <div class="exp-header">
+            <div class="exp-company">💳 Western Union — Denver, CO</div>
+            <div class="exp-badge past">Feb 2024 – May 2025</div>
+          </div>
+          <div class="exp-role">DevOps Engineer</div>
+          <div class="exp-meta">Financial Services &nbsp;|&nbsp; Global Payment Processing — 200+ Countries &nbsp;|&nbsp; PCI-DSS</div>
+          <ul class="exp-points">
+            <li>Provisioned and managed PCI-DSS-compliant AWS infrastructure via Terraform and CloudFormation for a global payment platform reaching millions of customers.</li>
+            <li>Containerised payment microservices on Docker and orchestrated on ECS Fargate and Kubernetes — zero-downtime releases for critical financial transaction services.</li>
+            <li>Implemented financial-grade security: IAM, VPC segmentation, KMS encryption, TLS via ACM, and HashiCorp Vault secrets management.</li>
+            <li>Built observability with CloudWatch, Splunk, Grafana &amp; PagerDuty — minimised MTTD and MTTR across distributed payment microservices.</li>
+          </ul>
+          <div class="exp-env">
+            <span class="env-tag">AWS</span><span class="env-tag">ECS Fargate</span><span class="env-tag">Kubernetes</span><span class="env-tag">Terraform</span><span class="env-tag">Jenkins</span><span class="env-tag">GitLab CI</span><span class="env-tag">Argo CD</span><span class="env-tag">Splunk</span><span class="env-tag">PagerDuty</span><span class="env-tag">PCI-DSS</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-card">
+          <div class="exp-header">
+            <div class="exp-company">🏥 Optum Services Inc — Hyderabad, India</div>
+            <div class="exp-badge past">Nov 2021 – Nov 2023</div>
+          </div>
+          <div class="exp-role">Senior DevOps Engineer</div>
+          <div class="exp-meta">Healthcare Technology &nbsp;|&nbsp; HIPAA &amp; SOC 2 Compliant</div>
+          <ul class="exp-points">
+            <li>Designed HIPAA-compliant AWS infrastructure for patient data management, claims processing, and pharmacy benefit platforms with PHI encryption via AWS KMS.</li>
+            <li>Managed Kubernetes (EKS) cluster operations — blue-green deployments ensuring continuous availability for patient-facing and provider-facing digital health services.</li>
+            <li>Integrated automated SAST, DAST, and container vulnerability scanning into CI/CD pipelines — maintaining HIPAA, SOC 2, and CMS compliance.</li>
+            <li>Automated infrastructure provisioning, backup rotation, and deployment validation — zero manual intervention in production healthcare environments.</li>
+          </ul>
+          <div class="exp-env">
+            <span class="env-tag">AWS</span><span class="env-tag">EKS</span><span class="env-tag">Terraform</span><span class="env-tag">CloudFormation</span><span class="env-tag">Jenkins</span><span class="env-tag">GitLab CI</span><span class="env-tag">Argo CD</span><span class="env-tag">HIPAA</span><span class="env-tag">SOC 2</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-card">
+          <div class="exp-header">
+            <div class="exp-company">🏢 Hexaware Technologies</div>
+            <div class="exp-badge past">Jun 2020 – Sep 2021</div>
+          </div>
+          <div class="exp-role">DevOps Engineer</div>
+          <div class="exp-meta">Enterprise Cloud &amp; Multi-Client Delivery</div>
+          <ul class="exp-points">
+            <li>Designed and maintained enterprise CI/CD pipelines with Jenkins, GitLab CI &amp; Azure DevOps across dev, QA, staging, and production environments.</li>
+            <li>Managed containerised workloads on AKS — cluster administration, rolling deployments, namespace management, and workload scaling.</li>
+            <li>Led cloud modernisation — migrating monolithic applications to Kubernetes-based microservices on Azure, improving deployment flexibility and operational scalability.</li>
+          </ul>
+          <div class="exp-env">
+            <span class="env-tag">Azure</span><span class="env-tag">AWS</span><span class="env-tag">AKS</span><span class="env-tag">Docker</span><span class="env-tag">Terraform</span><span class="env-tag">Jenkins</span><span class="env-tag">Azure DevOps</span><span class="env-tag">ELK Stack</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-card">
+          <div class="exp-header">
+            <div class="exp-company">💼 HCL Technologies — Hyderabad, India</div>
+            <div class="exp-badge past">Jan 2019 – May 2020</div>
+          </div>
+          <div class="exp-role">DevOps Engineer</div>
+          <div class="exp-meta">Enterprise Azure Cloud Delivery</div>
+          <ul class="exp-points">
+            <li>Implemented CI/CD pipelines with Jenkins, Azure DevOps &amp; GitLab CI — automated build, test, and deployment workflows for enterprise cloud platforms.</li>
+            <li>Provisioned Azure cloud infrastructure via Terraform and ARM Templates — scalable, repeatable, drift-free environments.</li>
+            <li>Supported cloud migration of legacy applications to Kubernetes-based microservices on Azure.</li>
+          </ul>
+          <div class="exp-env">
+            <span class="env-tag">Azure</span><span class="env-tag">AKS</span><span class="env-tag">Terraform</span><span class="env-tag">Jenkins</span><span class="env-tag">Prometheus</span><span class="env-tag">Grafana</span><span class="env-tag">Python</span><span class="env-tag">Linux</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-card">
+          <div class="exp-header">
+            <div class="exp-company">🎓 Wipro — Hyderabad, India</div>
+            <div class="exp-badge past">Sep 2018 – Dec 2018</div>
+          </div>
+          <div class="exp-role">Junior DevOps Engineer (Intern)</div>
+          <div class="exp-meta">Enterprise DevOps Foundation</div>
+          <ul class="exp-points">
+            <li>Hands-on training in Linux administration, CI/CD with Jenkins, Docker containerisation, and Azure cloud resource provisioning.</li>
+            <li>Developed Bash/Shell scripts to automate repetitive administrative tasks and reduce manual operational effort.</li>
+          </ul>
+          <div class="exp-env">
+            <span class="env-tag">Azure</span><span class="env-tag">Jenkins</span><span class="env-tag">Docker</span><span class="env-tag">Linux</span><span class="env-tag">Bash</span><span class="env-tag">Splunk</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="compliance-row">
+      <div class="comp-badge">
+        <div class="cb-icon">🏥</div>
+        <div>
+          <div class="cb-label">HIPAA Compliant</div>
+          <div class="cb-desc">Healthcare infrastructure</div>
+        </div>
+      </div>
+      <div class="comp-badge">
+        <div class="cb-icon">💳</div>
+        <div>
+          <div class="cb-label">PCI-DSS Compliant</div>
+          <div class="cb-desc">Payment platforms</div>
+        </div>
+      </div>
+      <div class="comp-badge">
+        <div class="cb-icon">🔐</div>
+        <div>
+          <div class="cb-label">SOC 2 Standards</div>
+          <div class="cb-desc">Security &amp; audit controls</div>
+        </div>
+      </div>
+      <div class="comp-badge">
+        <div class="cb-icon">🌐</div>
+        <div>
+          <div class="cb-label">Fortune 500 Experience</div>
+          <div class="cb-desc">Enterprise-scale delivery</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="education">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Academic Background</div>
+      <div class="section-title">Education</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div style="font-size:32px;margin-bottom:14px;">🎓</div>
+        <div class="edu-degree">Master of Science — Information Science</div>
+        <div class="edu-school">Florida Atlantic University, USA</div>
+        <div class="edu-meta">Boca Raton, Florida &nbsp;|&nbsp; Advanced Cloud &amp; Systems Studies</div>
+      </div>
+      <div class="edu-card">
+        <div style="font-size:32px;margin-bottom:14px;">🏛️</div>
+        <div class="edu-degree">Bachelor of Technology — Computer Science</div>
+        <div class="edu-school">University, Hyderabad, India</div>
+        <div class="edu-meta">Computer Science &amp; Engineering Foundation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Get In Touch</div>
+      <div class="section-title">Let's Connect</div>
+      <div class="section-line"></div>
+    </div>
+    <p style="color:var(--text-muted);margin-bottom:28px;max-width:500px;font-size:15px;">Open to Senior DevOps, Cloud Engineering, and Platform Engineering roles. Let's talk about how I can bring value to your team.</p>
+    <div class="contact-grid">
+      <a href="mailto:rohithmarneni21@gmail.com" class="contact-card">
+        <div class="cc-icon">✉️</div>
+        <div class="cc-label">Email</div>
+        <div class="cc-val">rohithmarneni21@gmail.com</div>
+      </a>
+      <a href="tel:+15619089444" class="contact-card">
+        <div class="cc-icon">📞</div>
+        <div class="cc-label">Phone</div>
+        <div class="cc-val">+1 561 908 9444</div>
+      </a>
+      <a href="https://www.linkedin.com/in/rohith-marneni/" target="_blank" class="contact-card">
+        <div class="cc-icon">🔗</div>
+        <div class="cc-label">LinkedIn</div>
+        <div class="cc-val">rohith-marneni</div>
+      </a>
+      <a href="https://github.com/rohithmarneni21" target="_blank" class="contact-card">
+        <div class="cc-icon">🐙</div>
+        <div class="cc-label">GitHub</div>
+        <div class="cc-val">rohithmarneni21</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Rohith Marneni &nbsp;·&nbsp; Senior DevOps &amp; Cloud Engineer &nbsp;·&nbsp; Boca Raton, FL &nbsp;·&nbsp; rohithmarneni21@gmail.com
+</footer>
+
+</body>
+</html>
